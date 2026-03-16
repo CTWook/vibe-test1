@@ -1,95 +1,132 @@
 :root {
-    --bg-color: #f0f0f0;
-    --container-bg: white;
-    --text-color: #333;
-    --number-bg: #eee;
-    --number-text: #000;
-    --button-bg: #4CAF50;
-    --button-hover: #45a049;
-    --shadow-color: rgba(0,0,0,0.1);
+    --bg-color: #f7f9fc;
+    --container-bg: #ffffff;
+    --text-color: #1a1a1a;
+    --number-bg: #f0f0f0;
+    --number-text: #1a1a1a;
+    --button-bg: #3b82f6;
+    --button-hover: #2563eb;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --border-color: #e5e7eb;
 }
 
 body.dark-mode {
-    --bg-color: #121212;
-    --container-bg: #1e1e1e;
-    --text-color: #e0e0e0;
-    --number-bg: #333;
-    --number-text: #fff;
-    --button-bg: #2e7d32;
-    --button-hover: #1b5e20;
-    --shadow-color: rgba(0,0,0,0.5);
+    --bg-color: #0f172a;
+    --container-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --number-bg: #334155;
+    --number-text: #f8fafc;
+    --button-bg: #60a5fa;
+    --button-hover: #93c5fd;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --border-color: #334155;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
 }
 
 #lotto-machine {
     text-align: center;
     background-color: var(--container-bg);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px var(--shadow-color);
-    transition: background-color 0.3s, box-shadow 0.3s;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px var(--shadow-color), 0 8px 10px -6px var(--shadow-color);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
 }
 
 #numbers {
     display: flex;
-    gap: 1rem;
-    margin: 2rem 0;
+    gap: 0.75rem;
+    margin: 2.5rem 0;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .number {
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background-color: var(--number-bg);
     color: var(--number-text);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.25rem;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s, color 0.3s;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+}
+
+.number:hover {
+    transform: translateY(-2px);
 }
 
 #draw-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     background-color: var(--button-bg);
-    color: white;
+    color: #ffffff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 #draw-button:hover {
     background-color: var(--button-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+#draw-button:active {
+    transform: translateY(0);
 }
 
 #dark-mode-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: 1px solid var(--text-color);
-    background: transparent;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border-color);
+    background-color: var(--container-bg);
     color: var(--text-color);
     cursor: pointer;
-    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
 }
 
 #dark-mode-toggle:hover {
-    background: var(--text-color);
-    color: var(--container-bg);
+    border-color: var(--button-bg);
+    transform: scale(1.05);
+}
+
+.icon {
+    font-size: 1.1rem;
 }

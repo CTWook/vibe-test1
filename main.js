@@ -3,21 +3,29 @@ const numbersContainer = document.getElementById('numbers');
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const body = document.body;
 
-// Check for saved dark mode preference
-if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
-    darkModeToggle.textContent = 'Light Mode';
+function updateToggleUI(isDark) {
+    const icon = darkModeToggle.querySelector('.icon');
+    const text = darkModeToggle.querySelector('.text');
+    if (isDark) {
+        icon.textContent = '🌙';
+        text.textContent = 'Dark Mode';
+    } else {
+        icon.textContent = '☀️';
+        text.textContent = 'Light Mode';
+    }
 }
 
+// Check for saved dark mode preference
+const isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+if (isDarkModeEnabled) {
+    body.classList.add('dark-mode');
+}
+updateToggleUI(isDarkModeEnabled);
+
 darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
-        darkModeToggle.textContent = 'Light Mode';
-    } else {
-        localStorage.setItem('darkMode', 'disabled');
-        darkModeToggle.textContent = 'Dark Mode';
-    }
+    const isDark = body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    updateToggleUI(isDark);
 });
 
 drawButton.addEventListener('click', () => {
